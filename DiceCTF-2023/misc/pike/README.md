@@ -1,6 +1,6 @@
 # pike
 
-We were given a [Dockerfile](./Dockerfile) and [server.py](). The server uses python RPC library rpyc to deliver remote procedure calls to clients.
+We were given a [Dockerfile](./Dockerfile) and [server.py](./server.py). The server uses python RPC library rpyc to deliver remote procedure calls to clients.
 
 As always checking the newest version of rpyc module, it is 5.3.0 (as of the day challenge was released). There was a bug ([CVE-2019-16328](https://nvd.nist.gov/vuln/detail/CVE-2019-16328)) patched in 4.1.2 which affects 4.1.x
 
