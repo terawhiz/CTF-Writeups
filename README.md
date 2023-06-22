@@ -12,5 +12,5 @@ Feel free to contact me for any reason.
 |DiceCTF|2023|[Link](./2023/DiceCTF/)|
 
 
-Follow me in [Twitter](https://twitter.com/teraWhiz)\
-Talk to me in [Discord](https://discordapp.com/users/Shunt#4275) maybe
+Follow me in [Twitter](https://twitter.com/ShuntIsReal)\
+Talk to me in [Discord](https://discordapp.com/users/realshunt) maybe
