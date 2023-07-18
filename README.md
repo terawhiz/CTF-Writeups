@@ -5,6 +5,7 @@ Feel free to contact me for any reason.
 
 |CTF|year|Link|
 |-|-|-|
+|zer0pts|2023|[Link](./2023/zer0pts/)|
 |BugTrialsCTF|2023|[Link](./2023/BugTrialsCTF/)|
 |PlaidCTF|2023|[Link](./2023/plaidCTF/)|
 |MidnightsunCTF|2023|[Link](./2023/MidnightsunCTF/)|
