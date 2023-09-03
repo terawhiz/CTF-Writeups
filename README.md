@@ -5,6 +5,7 @@ Feel free to contact me for any reason.
 
 |CTF|year|Link|
 |-|-|-|
+|DUCTF|2023|[Link](./2023/DUCTF/)|
 |zer0pts|2023|[Link](./2023/zer0pts/)|
 |BugTrialsCTF|2023|[Link](./2023/BugTrialsCTF/)|
 |PlaidCTF|2023|[Link](./2023/plaidCTF/)|
@@ -13,5 +14,5 @@ Feel free to contact me for any reason.
 |DiceCTF|2023|[Link](./2023/DiceCTF/)|
 
 
-Follow me in [Twitter](https://twitter.com/ShuntIsReal)\
+Follow me in ~~Twitter~~ [X](https://twitter.com/ShuntIsReal)\
 Talk to me in [Discord](https://discordapp.com/users/realshunt) maybe
