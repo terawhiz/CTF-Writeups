@@ -5,6 +5,7 @@ Feel free to contact me for any reason.
 ---
 |CTF|year|Link|
 |-|-|-|
+|SECCON|2024|[Link](./2024/SECCON/)|
 |CakeCTF|2023|[Link](./2023/CakeCTF/)|
 |DUCTF|2023|[Link](./2023/DUCTF/)|
 |zer0pts|2023|[Link](./2023/zer0pts/)|
