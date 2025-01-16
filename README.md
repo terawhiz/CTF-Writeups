@@ -1,7 +1,7 @@
 # CTF-Writeups
 
 Writeups for all the CTF challenges I've solved.
-Feel free to contact me for any reason.
+
 ---
 |CTF|year|Link|
 |-|-|-|
