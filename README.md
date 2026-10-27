@@ -5,6 +5,7 @@ Writeups for all the CTF challenges I've solved.
 ---
 |CTF|year|Link|
 |-|-|-|
+|Hack.lu|2026|[Link](./2026/Hack.lu/)|
 |LACTF|2025|[Link](./2025/lactf/)|
 |SECCON|2024|[Link](./2024/SECCON/)|
 |CakeCTF|2023|[Link](./2023/CakeCTF/)|
